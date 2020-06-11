@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlatziVideo</title>
+    <link rel="icon" type="image/png" href="../palomitas.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'icomoon';
+            src:  url('../fonts/icomoon.eot?pdqzgp');
+            src: url('../fonts/icomoon.eot?pdqzgp#iefix') format('embedded-opentype'),
+                url('../fonts/icomoon.ttf?pdqzgp') format('truetype'),
+                url('../fonts/icomoon.woff?pdqzgp') format('woff'),
+                url('../fonts/icomoon.svg?pdqzgp#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        [class^="icon-"], [class*=" icon-"] {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'icomoon' !important;
+        speak: never;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        }
+        body{
+            margin: 0;
+            font-family: 'Arial', serif;
+
+        }
+        .container{
+            display: grid;
+            grid-template: repeat(2, 1fr) / 280px 1.1fr .9fr;
+            grid-template-areas: "playlist video video"
+                                 "playlist comments suggests";
+        }
+        .playlist_container{
+            background: #151B31;
+            color: white;
+            padding: 10px;
+            grid-area: playlist;
+            padding-left: 15px;
+        }
+        .playlist_title{
+            font-size: 1.2em;
+            margin-top: 1.8em;
+        }
+        .my_playlist{
+            padding-left: 30px;
+        }
+        .playlist_friends{
+            display: flex;
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+        .playlist_friends img{
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            /* vertical-align: middle; */
+        }
+        .playlist_friends p{
+            margin: 0;
+            margin-left: 10px;
+            align-self: center;
+        }
+        .video_container{
+            grid-area: video;
+            border-bottom: gray solid 3px;
+            display: grid;
+            grid-template-rows: auto auto;
+        }
+        .video_play img{
+            position: static ; 
+            width: 100%;
+        }
+        .video_play a{
+            color: white;
+            text-decoration: none;
+            font-size: 2em;
+        }
+        .video_info{
+            padding: 1em;
+        }
+        .video_info h2,p{
+            margin: 0;
+        }
+        .video_info h2{
+            color: #505865;
+        }
+        .video_info p{
+            color: #777777;
+        }
+        .share_save{
+            display: flex;
+            margin: auto 25px;
+        }
+        .save, .share{
+            text-decoration: none;
+            color: #757F90;
+            text-align: center;
+            margin: auto 10px;
+        }
+        .save p, .share p{
+            color: #454F60;
+        }
+        .video_interaction{
+            padding-top: .8em;
+            display: flex;
+        }
+        .icon-arrow-left:before {
+            content: "\e90a";
+            position: absolute;
+            left: 300px;
+            top: 15px;
+        }
+        .icon-play:before {
+            content: "\e90b";
+            font-size: 2.5em;
+            position: absolute;
+            left: 58vw;
+            top: 12vw;
+        }
+        .icon-mail-forward:before {
+            content: "\e90c";
+            color: #525F7F;
+
+        }
+        .icon-download:before {
+            content: "\e90d";
+            color: #525F7F;
+        }
+        .comments_container{
+            grid-area: comments;
+        }
+        .suggests_container{
+            grid-area: suggests;
+        }
+        ol {
+            counter-reset: item;
+            list-style-type: none;
+        }
+        li{
+            display: block;
+            list-style-type: none;
+            padding-left: 10px;
+            margin: 10px auto;
+            text-transform: capitalize;
+            position: relative;
+        }
+        li:before {
+            content: counter(item) " ";
+            counter-increment: item;
+            position: absolute;
+            left: -20px;
+        }
+        h1 strong{
+            background: -webkit-linear-gradient(red ,#FF5095);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: tomato;
+        }
+        button{
+            border-style: hidden;
+            cursor: pointer;
+            color: white;
+        }
+        .button{
+            align-self: center;
+            border-radius: 10px;
+            width: 140px;
+            height: 30px;
+            padding: 5px;
+            background: linear-gradient(to right, red ,#FF5095);
+        }
+        .buttons{
+            margin-left: 85px;
+            align-self: center;
+        }
+        #Electronic, #Rock, #Ochenta, #Rela {
+            background: purple;
+            height: 20px;
+            border-radius: 10px;
+            align-self: center;
+            width: 80px;
+            margin: auto 5px;
+        }
+        #Electronic{
+            background: #A160FF;
+        }
+        #Rock{
+            background: #14EBC3;
+        }
+        #Ochenta{
+            background: #E01622;
+        }
+        #Rela{
+            background: #ED3084;
+        }
+        .comments_container{
+            padding-left: 25px;
+        }
+        .comments_container, .suggest_container{
+            padding-top: 20px;
+        }
+        .comments_container h3, .suggest_container h3{
+            font-size: 1em;
+        }
+        .suggest_container h3{
+            padding-left: 20px;
+        }
+        .input_comments{
+            height: 35px;
+            border-radius: 5px;
+            background-image: url('../bambi.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: #F2F2F2;
+            width: 80%;
+            border-style: hidden;
+            font-size: .9em;
+            padding-left: 50px;
+        }
+        .comment{
+            display: flex;
+            margin: 20px auto;
+            color: #5A5862;
+        }
+        .comment img{
+            border-radius: 50%;
+            vertical-align: middle;
+            height: 50px;
+        }
+        .comment_text{
+            margin: auto 10px;
+        }
+        .comment_text h4,p{
+            margin: 0;
+            text-transform: capitalize;
+        }
+        .suggest p{
+            width: 50%;
+            font-size: .9em;
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="playlist_container">
+            <h1>Platzi<strong>Video</strong> </h1>
+            <p class="playlist_title">My Playlist</p>
+            <ol class="my_playlist">
+                <li>5 reasons to choose a notebook over a computer desktop</li>
+                <li>Get around easily with a new york limousine service</li>
+                <li>how to cook a tender juicy steak</li>
+                <li>how to remove kidney stones</li>
+                <li>the science of superstitions</li>
+                <li>5 reasons to choose a notebook over a computer desktop</li>
+                <li>Get around easily with a new york limousine service</li>
+                <li>how to cook a tender juicy steak</li>
+                <li>how to remove kidney stones</li>
+                <li>the science of superstitions</li>
+            </ol>
+            <p class="playlist_title">Playlist de amigos</p>
+            <a href="" class="playlist_friends">
+                <img src="../bambi.png" alt="">
+                <p>Gordon Carroll</p>
+            </a>
+            <a href="" class="playlist_friends">
+                <img src="../bambi.png" alt="">
+                <p>Adeline Wilkins</p>
+            </a>
+            <a href="" class="playlist_friends">
+                <img src="../bambi.png" alt="">
+                <p>John Wheeler</p>
+            </a>
+            <a href="" class="playlist_friends">
+                <img src="../bambi.png" alt="">
+                <p>Katherine Nelson</p>
+            </a>
+        </div>
+        <div class="video_container">
+            <div class="video_play">
+                <img src="video.png" alt="">
+                <a href="" class="icon-arrow-left"></a>
+                <a href="" class="icon-play"></a>
+            </div>
+            <div class="video_info">
+                <h2>New Order - Bizarre Love Triangle</h2>
+                <p>999999 vistas</p>
+                <div class="video_interaction">
+                    <button class="button">Agregar a mi lista</button>
+                    <div class="share_save">
+                        <a href="" class="share">
+                            <span class="icon-mail-forward"></span>
+                            <p>Share</p>
+                        </a>
+                        <a href="" class="save">
+                            <span class="icon-download""></span>
+                            <p>Save</p>
+                        </a>
+                    </div>
+                    <div class="buttons">
+                        <button id="Electronic">Electronic</button>
+                        <button id="Rock">Rock</button>
+                        <button id="Ochenta">80</button>
+                        <button id="Rela">Rela</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comments_container">
+            <h3>Comentarios</h3>
+            <input class="input_comments" type="text" placeholder="Añade un comentario" class="input_comments">
+            <div class="comments">
+                <div class="comment">
+                    <img src="../bambi.png" alt="">
+                    <div class="comment_text">
+                        <h4>Gordon Carroll</h4>
+                        <p>Barbecue sauce for a perfect barbeque</p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="../bambi.png" alt="">
+                    <div class="comment_text">
+                        <h4>Gordon Carroll</h4>
+                        <p>Why las vegas hotel rooms for you</p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="../bambi.png" alt="">
+                    <div class="comment_text">
+                        <h4>Gordon Carroll</h4>
+                        <p>what you need to know about oil fondue</p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="../bambi.png" alt="">
+                    <div class="comment_text">
+                        <h4>Gordon Carroll</h4>
+                        <p>popular uses of the internet</p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="../bambi.png" alt="">
+                    <div class="comment_text">
+                        <h4>Gordon Carroll</h4>
+                        <p>are you ready to buy a home theater audio system</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="suggest_container">
+            <h3>Sugerencias</h3>
+            <div class="suggest">
+                <img src="musgo.png" alt="">
+                <p>Quick and easy lunches for the cosking challenged</p>
+            </div>
+            <div class="suggest">
+                <img src="musgo.png" alt="">
+                <p>Quick and easy lunches for the cosking challenged</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

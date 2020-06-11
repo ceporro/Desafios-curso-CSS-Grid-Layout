@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movi @Ceporro</title>
+    <link rel="icon" type="image/png" href="../palomitas.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'icomoon';
+            src:  url('../fonts/icomoon.eot?hr9vfy');
+            src:  url('../fonts/icomoon.eot?hr9vfy#iefix') format('embedded-opentype'),
+                    url('../fonts/icomoon.ttf?hr9vfy') format('truetype'),
+                    url('../fonts/icomoon.woff?hr9vfy') format('woff'),
+                    url('../fonts/icomoon.svg?hr9vfy#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        [class^="icon-"], [class*=" icon-"] {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'icomoon' !important;
+        speak: never;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        }
+        body{
+            margin: 0;
+        }
+        .container{
+            /* height: 100vh; */
+            display: grid;
+            grid-template-columns: 85px auto;
+            grid-template-rows: 75px auto;
+            grid-template-areas:  "header header"
+                                  "menu content";
+        }
+        header{
+            padding: 5px ;
+            grid-area: header;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-bottom: 1px solid lightgray;
+            box-shadow: 5px 3px 3px lightgray;
+            font-family: 'Fjalla One', serif;
+        }
+        header h1{
+            -webkit-text-stroke: .4px red;
+            color: white;
+        }
+        header input{
+            height: 25px;
+            border: 2px solid lightgray;
+            border-radius: 10px;
+            width: 350px;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        .title{
+            display: flex;
+            align-items: center;
+            padding-left: 25px;
+        }
+        .title img{
+            height: 45px;
+            margin: 5px;
+        }
+        h2{
+            margin: 10px 0;
+        }
+        .profile{
+            padding-right: 50px;
+            align-self: center;
+            font-size: 18px;
+        }
+        .profile_image img{
+            vertical-align: middle;
+            border-radius: 50%;
+            width: 2.2em;
+            height: 2.2em;
+        }
+        .profile a{
+            text-decoration: none;
+            color: black;
+        }
+        .menu{
+            grid-area: menu;
+            background: linear-gradient(to right, #FE555C, #FE6D6A);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 25px; 
+        }
+        .menu p{
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .up_icons{
+            position: fixed;
+            text-decoration: none;
+        }
+        .bottom_icons{
+            position: fixed;
+            bottom: 0;
+        }
+        .icon-triangle-down:before {
+            content: "\e909";
+        }
+        .icon-whatshot:before {
+            content: "\e905";
+        }
+        .icon-cog:before {
+            content: "\e908";
+        }
+        .icon-heart:before{
+            content: "\e906";
+        }
+        .icon-home:before {
+            content: "\e907";
+        }
+        .icon-whatshot, .icon-cog, .icon-heart,.icon-home{
+            font-size: 2em;
+            color: white;
+            text-decoration: none;
+        }
+
+        .content{
+            grid-area: content;
+            display: grid;
+            grid-template-rows: 30px auto 30px auto 30px auto;
+            /* grid-template-columns: repeat(3, minmax(300px, 1fr));  */
+            grid-template-areas: "titulo1"
+                                 "cine"
+                                 "titulo2"
+                                 "critica"
+                                 "titulo3" 
+                                 "perder";
+            padding: 30px;
+            justify-content: center;
+            grid-gap: 20px;
+        }
+        .films{
+            position: relative;
+        }
+        .image_films{
+            /* width: 300px; */
+            margin: 0;
+        }
+        .image_films img{
+            width: 100%;
+            position: relative;
+            margin-bottom: -4px;
+        }
+        .title_cine{
+            grid-area: titulo1;
+        }
+        .films_cine{
+            grid-area: cine;
+        }
+        .title_critica{
+            grid-area: titulo2;
+        }
+        .films_critica{
+            grid-area: critica;
+        }
+        .title_perder{
+            grid-area: titulo3;
+        }
+        .films_perder{
+            grid-area: perder;
+        }
+        .films_cine, .films_critica, .films_perder{
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(300px, 30%));
+            grid-gap: 30px;
+        }
+        .overlay{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(254, 35, 45, 0.3);
+            color: white;
+            padding: 10px;
+        }
+        .overlay h1,p{
+            margin: 10px auto;
+        }
+        .overlay h1{
+            font-size: 24px;
+            text-transform: capitalize;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a class="title">
+                <img src="../palomitas.png" alt="">
+                <h1>Movi.es</h1>
+            </a>
+            <input type="text" placeholder="Look for your favourite film, actor, actress or director" class="searcher">
+            <span class="profile">
+                <a href="">Bambi @Ceporro</a>
+                <a href="" class="profile_image"> <img src="../bambi.png" alt=""></a>
+                <a href="" class="icon-triangle-down"></a>
+            </span>
+            
+        </header>
+        <div class="menu">
+            <span class="up_icons">
+                <a href="" class="icon-home"></a>
+                <p>Home</p>
+                <a href="" class="icon-whatshot"></a>
+                <p>Trending</p>
+                <a href=""  class="icon-heart"></a>
+                <p>More likes</p>
+            </span>
+            <div class="bottom_icons">
+                <a href=""  class="icon-cog"></a>
+                <p>Settings</p>
+            </div>
+        </div>
+        <div class="content">
+            <h2 class="title_cine">Now in the cinema</h2>
+            <div class="films_cine">
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+            </div>
+            <h2 class="title_critica">Claimed for the review</h2>
+            <div class="films_critica">
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+            </div>
+            <h2 class="title_perder">You should't miss</h2>
+            <div class="films_perder">
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+                <a class="films">
+                    <figure class="image_films">
+                        <img src="secretLifePets.jpg" alt="">
+                    </figure>
+                    <span class="overlay">
+                        <h1>The secret life of pets</h1>
+                        <p class="text">The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                    </span>
+                </a>
+            </div>   
+        </div>
+    </div>
+</body>
+</html>
