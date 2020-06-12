@@ -221,16 +221,32 @@
             padding-left: 20px;
         }
         .input_comments{
-            height: 35px;
+            height: 40px;
             border-radius: 5px;
-            background-image: url('bambi.PNG');
+            /* background-image: url('bambi.PNG');
             background-repeat: no-repeat;
-            background-size: contain;
+            background-size: contain; */
             background-color: #F2F2F2;
             width: 80%;
             border-style: hidden;
             font-size: .9em;
             padding-left: 50px;
+        }
+        .input_comments_container{
+            position: relative;
+        }
+        .input_comments_container::after{
+            content: url('bambi.png');
+            display: flex;
+            contain: content;
+            position: absolute;
+            top: 7.5px;
+            left: 12px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            justify-content: center;
+            zoom: .65;
         }
         .comment{
             display: flex;
@@ -324,7 +340,9 @@
         </div>
         <div class="comments_container">
             <h3>Comentarios</h3>
-            <input class="input_comments" type="text" placeholder="Añade un comentario" class="input_comments">
+            <div class="input_comments_container">
+                <input class="input_comments" type="text" placeholder="Añade un comentario" class="input_comments">
+            </div>
             <div class="comments">
                 <div class="comment">
                     <img src="bambi.PNG" alt="">
